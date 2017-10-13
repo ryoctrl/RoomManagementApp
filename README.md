@@ -8,11 +8,13 @@
 	# run as root
 	$nohup node index.js &
 
-## history
+## ToDo
 	
 	- nohupで実行するため、学籍番号とパスワードを入力できない問題
 	- DashButtonのタチャリングに対応する
 	- 動作ログと#raspberryとの同期
 	- リファクタリング&リストラクチャリング
 		
-	
+## History
+
+	- Authに用いるIDとPasswordのdummyで用意	
