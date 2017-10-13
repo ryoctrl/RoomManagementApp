@@ -13,28 +13,29 @@ Slack.prototype.getID = function(){
 Slack.prototype.post = function(entry){
 	var text = "";
 	if(entry){
-		text = "部室空室";
+		text = "open";
 	}else{
-		text = "部室扉閉";
+		text = "close";
 	}
 	request.post('https://slack.com/api/chat.postMessage',
 		{
 			form:{
-				token: 'xoxp-18471250721-41922546531-210911699312-9ad8d69b180c99acb2f001fda69958f4',
-				//channel: "#鍵持ってます",
-				channel: "#bot_making",
-				as_user: 'true',
+				token: "xoxp-18471250721-41922546531-255810099842-425ecdbf044897e191a73702d87bbf2c",
+				channel: "#鍵持ってます",
+				//channel: "#bot_making",
 				text: text
 			}
 		}
 		, (error, response, body) => {
 			if(error){
 				console.log(error);
-				logging.write("Error:" + error);
-				this.auth.login();
-				this.post();
+				this.logging.write("RequestError:" + error);
+				//this.auth.login();
+				//this.post();
+			} else {
+				post
+				this.logging.write(text);
 			}
-			else console.log('SendMessage:' + text );
 		}
 	)
 }	

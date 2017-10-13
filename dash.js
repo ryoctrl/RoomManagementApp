@@ -6,6 +6,8 @@ function Dash(auth){
 }
 
 Dash.prototype.init = function(){
+	var entryDetected = false;
+	var exitDetected = false;
 	//入室用DashButton
 	const entryButtonAddr = "68:37:e9:7b:a0:b6";
 	const entryButton = dash_button(entryButtonAddr, null, null, 'all');
@@ -15,14 +17,31 @@ Dash.prototype.init = function(){
 	const exitButton = dash_button(exitButtonAddr, null, null, 'all');
 	
 	entryButton.on('detected', () => {
-		console.log("entry pushed");
-		this.slack.post(true);
+		if(!entryDetected){
+			entryDetected = true;
+			console.log("entry pushed");
+			this.slack.pos(true);
+			this.now = new Date();			
+		}
+		setTimeout(() => {
+				entryDetected = false;
+			}, 5000);
 	});
 	
 	exitButton.on('detected', () => {
-		console.log("exit pushed");
-		this.slack.post(false);
+		if(!exitDetected){
+			exitDetected = true;
+			console.log("exit pushed");
+			this.slack.post(false);
+		}
+		setTimeout(() => {
+				exitDetected = false;
+			}, 5000);
 	});
+}
+
+function buttonDetected(){
+	
 }
 
 module.exports = Dash;
