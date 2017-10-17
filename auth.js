@@ -12,7 +12,8 @@ Auth.prototype.getID = function(){
 
 Auth.prototype.login = function(){
 	var auth = require('request');
-	url = 'https://ninsho-nw3.kudos.kindai.ac.jp:8000/cgi-bin/adeflogin.cgi';
+	//url = 'http://ninsho-nw1.kudos.kindai.ac.jp:8000/cgi-bin/adeflogin.cgi';
+	url = 'http://ninsho-nw1.kudos.kindai.ac.jp:8001/';
 
 	auth.post(url,
 		{
@@ -25,10 +26,10 @@ Auth.prototype.login = function(){
 			console.log("auth posted");
 			if(error){
 				message = "LoginError:" + error;
-				logging.write(message);
+				this.logging.write(message);
 				console.log(error);
 			}else{
-				logging.write("login succeeded");
+				this.logging.write("login succeeded");
 				console.log("auth succeeded");
 			}
 		}

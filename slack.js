@@ -1,9 +1,10 @@
-let request = require('request');
+const request = require('request');
 const Logging = require('./Logging.js');
 
 function Slack(auth){
 	this.auth = auth;
 	this.logging = new Logging();
+	this.token = "";
 }
 
 Slack.prototype.getID = function(){
@@ -11,6 +12,10 @@ Slack.prototype.getID = function(){
 }
 
 Slack.prototype.post = function(entry){
+	if(!this.token){
+		console.log("please input token to slack.js!");
+		return;
+	}
 	var text = "";
 	if(entry){
 		text = "open";
@@ -20,7 +25,7 @@ Slack.prototype.post = function(entry){
 	request.post('https://slack.com/api/chat.postMessage',
 		{
 			form:{
-				token: "xoxp-18471250721-41922546531-255810099842-425ecdbf044897e191a73702d87bbf2c",
+				token: this.token,
 				channel: "#鍵持ってます",
 				//channel: "#bot_making",
 				text: text
@@ -33,7 +38,6 @@ Slack.prototype.post = function(entry){
 				//this.auth.login();
 				//this.post();
 			} else {
-				post
 				this.logging.write(text);
 			}
 		}

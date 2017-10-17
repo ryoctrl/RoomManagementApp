@@ -20,7 +20,7 @@ Dash.prototype.init = function(){
 		if(!entryDetected){
 			entryDetected = true;
 			console.log("entry pushed");
-			this.slack.pos(true);
+			this.slack.post(true);
 			this.now = new Date();			
 		}
 		setTimeout(() => {
