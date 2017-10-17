@@ -3,6 +3,15 @@
 ## information
 部室のRaspberryPiに入れる用の部室入退室管理アプリ.
 
+## Installation
+	#run as root
+	$git clone https://ryoctrl/RoommanagementApp.git
+	$cd RoommanagementApp
+
+	$npm install readline-sync
+	$apt-get install libpcap-dev
+	$npm install node-dash-button
+
 ## usage
 
 	# run as root
