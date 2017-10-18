@@ -1,10 +1,11 @@
 const request = require('request');
 const Logging = require('./Logging.js');
+const Environment = require('./Environment.js');
 
 function Slack(auth){
 	this.auth = auth;
 	this.logging = new Logging();
-	this.token = "";
+	this.token = new Environment().getValue("token");
 }
 
 Slack.prototype.getID = function(){
